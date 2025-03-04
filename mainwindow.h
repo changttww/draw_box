@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include "myopenglwidget.h"
-#include "trianglewidget.h"
 #include "rectangle.h"
+#include "trianglewidget.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -28,7 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    OpenGLRectangle * rectangle;
+    OpenGLRectangle *rectangle;
     MyOpenGLWidget *myopenglptr;
     TriangleWidget *triangleptr;
 };

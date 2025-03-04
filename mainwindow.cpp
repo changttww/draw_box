@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     //triangleptr = new TriangleWidget(this);
     setCentralWidget(rectangle);
     //myopenglptr->update();  // 手动触发重绘
-
 }
 
 MainWindow::~MainWindow()

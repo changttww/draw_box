@@ -1,17 +1,19 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-#include <QOpenGLWidget>
+#include <QOpenGLBuffer>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
+#include <QOpenGLWidget>
 
 class OpenGLRectangle : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
 public:
+
     OpenGLRectangle(QWidget *parent = nullptr) : QOpenGLWidget(parent), m_drawRectangle(false){}
+
     ~OpenGLRectangle() { cleanup(); }
 
     void setDrawRectangle(bool enabled) {
@@ -42,8 +44,6 @@ protected:
         // 初始化 OpenGL 函数
         initializeOpenGLFunctions();
 
-
-
         // 定义矩形的顶点数据 (x, y, z, r, g, b)
         GLfloat vertices[] = {
             // 位置坐标      // 颜色（RGB）
@@ -51,13 +51,17 @@ protected:
             0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // 右下角（绿色）
             0.5f,  0.5f, 0.0f, 0.5f, 0.0f, 1.0f, // 右上角（蓝色）
             -0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f  // 左上角（黄色）
-        };
 
+        };
 
         // 定义索引数据，用于绘制两个三角形形成矩形
         GLuint indices[] = {
-            0, 1, 2, // 第一个三角形（左下 → 右下 → 右上）
-            2, 3, 0  // 第二个三角形（右上 → 左上 → 左下）
+            0,
+            1,
+            2, // 第一个三角形（左下 → 右下 → 右上）
+            2,
+            3,
+            0 // 第二个三角形（右上 → 左上 → 左下）
         };
 
         // 创建并绑定 VAO（顶点数组对象）
@@ -95,6 +99,9 @@ protected:
     }
 
 
+
+
+
     void paintGL() override {
         if(m_drawRectangle)
         {
@@ -113,22 +120,21 @@ protected:
         }
     }
 
-    void resizeGL(int w, int h) override {
-        glViewport(0, 0, w, h);
-    }
+    void resizeGL(int w, int h) override { glViewport(0, 0, w, h); }
 
 private:
-    QOpenGLShaderProgram shaderProgram;  // 着色器程序
+    QOpenGLShaderProgram shaderProgram;             // 着色器程序
     QOpenGLBuffer vbo{QOpenGLBuffer::VertexBuffer}; // 顶点缓冲对象
     QOpenGLBuffer ibo{QOpenGLBuffer::IndexBuffer};  // 索引缓冲对象
-    QOpenGLVertexArrayObject vao; // 顶点数组对象
+    QOpenGLVertexArrayObject vao;                   // 顶点数组对象
 
     bool m_drawRectangle;  // 控制是否绘制的标志
 
     /**
      * @brief 清理 OpenGL 资源
      */
-    void cleanup() {
+    void cleanup()
+    {
         makeCurrent(); // 设置 OpenGL 上下文为当前上下文
         vbo.destroy();
         ibo.destroy();
