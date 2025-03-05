@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>shaders/fragment.glsl</file>
         <file>shaders/vertex.glsl</file>
+        <file>textures/bb.png</file>
     </qresource>
 </RCC>

@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         rectangle.h rectangle.cpp
         res.qrc
         README.md
+        textured_rectangle.h textured_rectangle.cpp
 
 
     )

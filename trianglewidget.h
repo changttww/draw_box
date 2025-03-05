@@ -7,6 +7,7 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLWidget>
+#include <QOpenGLTexture>
 
 class TriangleWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -98,9 +99,11 @@ protected:
         glClear(GL_COLOR_BUFFER_BIT);
 
         shaderProgram.bind();
+        texture->bind();
         vao->bind();
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
         vao->release();
+        texture->release();
         shaderProgram.release();
     }
 
@@ -109,6 +112,7 @@ private:
     QOpenGLVertexArrayObject *vao;
     QOpenGLBuffer *vbo;
     QOpenGLBuffer *ibo;
+    QOpenGLTexture *texture;
 };
 
 #endif // TRIANGLEWIDGET_H
